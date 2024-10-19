@@ -1,24 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://b0e1oys5kxbd3"]
+[gd_scene load_steps=2 format=3 uid="uid://by1x4o7t22356"]
 
-[ext_resource type="Script" path="res://Scripts/Car.cs" id="1_6ee5m"]
+[ext_resource type="Script" path="res://scenes/characters/steering.gd" id="1_pfi41"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_h4sii"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qran4"]
-
-[node name="Car" type="CharacterBody3D" node_paths=PackedStringArray("casts")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-script = ExtResource("1_6ee5m")
-casts = NodePath("casts")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_h4sii")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_qran4")
+[node name="steering" type="Node3D"]
+script = ExtResource("1_pfi41")
 
 [node name="casts" type="Node3D" parent="."]
-transform = Transform3D(1.00001, 0, 0, 0, 1, 0, 0, 0, 1.00001, 0, 0, 0)
 
 [node name="1" type="RayCast3D" parent="casts"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)

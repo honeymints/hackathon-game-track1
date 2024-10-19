@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://1uom8errvyi"]
+
+[ext_resource type="PackedScene" uid="uid://bo8nv527pufra" path="res://assets/race_track_south_loop/scene.gltf" id="1_tpe6e"]
+[ext_resource type="PackedScene" uid="uid://b0e1oys5kxbd3" path="res://Scenes/character_body_3d.tscn" id="2_0vmdo"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_clo5x"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_p8dux"]
+sky_material = SubResource("ProceduralSkyMaterial_clo5x")
+
+[sub_resource type="Environment" id="Environment_pgpei"]
+background_mode = 2
+sky = SubResource("Sky_p8dux")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="Curve3D" id="Curve3D_ox67n"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 38.9811, 0, 19.1912, 0, 0, 0, 0, 0, 0, 45.2634, 0, -54.401, 0, 0, 0, 0, 0, 0, 76.6748, 0, -136.968, 0, 0, 0, 0, 0, 0, 117.958, 0, -197.098, 0, 0, 0, 0, 0, 0, 126.774, 0, -235.176, 0, 0, 0, 0, 0, 0, 71.956, 0, -313.25, 0, 0, 0, 0, 0, 0, 13.8159, 0, -339.829, 0, 0, 0, 0, 0, 0, -29.3739, 0, -316.572, 0, 0, 0, 0, 0, 0, -52.63, 0, -226.87, 0, 0, 0, 0, 0, 0, -69.2415, 0, -183.681, 0, 0, 0, 0, 0, 0, -95.8198, 0, -137.169, 0, 0, 0, 0, 0, 0, -94.1588, 0, -72.3837, 0, 0, 0, 0, 0, 0, -62.5969, 0, -0.954379, 0, 0, 0, 0, 0, 0, -57.6135, 0, 53.8635, 0, 0, 0, 0, 0, 0, -94.1588, 0, 112.004, 0, 0, 0, 0, 0, 0, -112.431, 0, 221.639, 0, 0, 0, 0, 0, 0, -92.4976, 0, 281.441, 0, 0, 0, 0, 0, 0, -9.44021, 0, 299.713, 0, 0, 0, 0, 0, 0, 52.0223, 0, 273.135, 0, 0, 0, 0, 0, 0, 66.9726, 0, 200.045, 0, 0, 0, 0, 0, 0, 37.0719, 0, 130.276),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 21
+
+[node name="testmap" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_pgpei")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_energy = 1.099
+shadow_enabled = true
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_tpe6e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 1)
+
+[node name="Car" parent="." instance=ExtResource("2_0vmdo")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 44, 64.917, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, -0.506034, 0.862514, 0, 0.862514, 0.506034, -1, 2.21194e-08, -3.77017e-08, 238, 94, 0)
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_ox67n")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
+transform = Transform3D(0.996376, 0, -0.0850568, 0, 1, 0, 0.0850568, 0, 0.996376, 38.9811, 0, 19.1912)

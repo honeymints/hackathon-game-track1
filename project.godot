@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="StrongMints"
-run/main_scene="res://Scenes/character_body_3d.tscn"
+run/main_scene="res://Scenes/templehoff.tscn"
 config/features=PackedStringArray("4.3", "C#", "Mobile")
 config/icon="res://icon.svg"
+
+[audio]
+
+general/default_gravity=8.995
 
 [dotnet]
 
